@@ -39,9 +39,10 @@ class MainView : View("Hello TornadoFX") {
                 isDefaultButton = true
                 useMaxHeight = true
                 action {
-                    GlobalScope.launch {
+                    /*GlobalScope.launch {
                         viewModel.login(viewModel.username.value, viewModel.password.value)
-                    }
+                    }*/
+                    this@MainView.replaceWith(HomeView::class, transition = ViewTransition.FadeThrough(.5.seconds), centerOnScreen = true)
                 }
             }
         }

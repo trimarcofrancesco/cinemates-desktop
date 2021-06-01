@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="" />
+    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +59,9 @@
     <dirStrings>
       <dir>C:\Users\es\Projects\tornadofx-idea-plugin\template-projects\tornadofx-maven-project</dir>
     </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -108,6 +117,7 @@
     <option name="height" value="1406" />
   </component>
   <component name="ProjectId" id="1tJWOLlvYcreYNmpqn7alAr7Uh2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -197,6 +207,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
@@ -213,6 +224,9 @@
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="no.tornado.app" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="it.unina.cinemates_desktop.view" />
     </key>
   </component>
   <component name="RunManager">
@@ -348,7 +362,7 @@
       <workItem from="1622487641766" duration="281000" />
       <workItem from="1622487928498" duration="2000" />
       <workItem from="1622487950882" duration="1104000" />
-      <workItem from="1622494237578" duration="9306000" />
+      <workItem from="1622494237578" duration="9978000" />
     </task>
     <servers />
   </component>
