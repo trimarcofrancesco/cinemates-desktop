@@ -2,25 +2,22 @@ package it.unina.cinemates_desktop.view
 
 import it.unina.cinemates_desktop.model.UserModel
 import it.unina.cinemates_desktop.viewmodel.LoginViewModel
-import javafx.geometry.Pos
-import javafx.scene.text.FontWeight
+import javafx.collections.FXCollections
+import javafx.scene.control.ComboBox
+import javafx.scene.layout.BorderPane
 import tornadofx.*
 
 class HomeView : View("Cinemates") {
     private val user: UserModel by inject()
     private val loginViewModel: LoginViewModel by inject()
 
-    override val root = vbox {
-        alignment = Pos.CENTER
+    override val root : BorderPane by fxml("/views/HomeView.fxml")
 
-        label(user.profile.value.username) {
-            style {
-                fontWeight = FontWeight.BOLD
-                fontSize = 24.px
-            }
-        }
+    val timerangeCombobox : ComboBox<String> by fxid("timerangeCombobox")
 
-        button("Logout").action(loginViewModel::logout)
+    init {
+        timerangeCombobox.items = FXCollections.observableArrayList("Sempre", "Settimana", "Mese")
+        timerangeCombobox.value = "Sempre"
     }
 
     override fun onDock() {

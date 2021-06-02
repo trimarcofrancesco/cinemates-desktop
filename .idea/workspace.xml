@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" afterDir="false" />
+    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="- Added replacing view in MainView.kt">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cinemates_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/propic_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/propic_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/propic_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/propic_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/propic_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/HomeView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +53,7 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -195,7 +200,6 @@
     </panes>
   </component>
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -211,15 +215,22 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/views" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/ui/view" />
+      <recent name="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
@@ -268,13 +279,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -362,8 +375,28 @@
       <workItem from="1622487641766" duration="281000" />
       <workItem from="1622487928498" duration="2000" />
       <workItem from="1622487950882" duration="1104000" />
-      <workItem from="1622494237578" duration="9978000" />
+      <workItem from="1622494237578" duration="10299000" />
+      <workItem from="1622616676198" duration="6662000" />
+      <workItem from="1622623759784" duration="6152000" />
+      <workItem from="1622630083075" duration="255000" />
+      <workItem from="1622630363650" duration="547000" />
+      <workItem from="1622630964700" duration="8589000" />
     </task>
+    <task id="LOCAL-00001" summary="- Added replacing view in MainView.kt">
+      <created>1622579072280</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622579072280</updated>
+    </task>
+    <task id="LOCAL-00002" summary="- Replaced login rest api call with admin one&#10;- Implemented Splash logic&#10;- Implemented AppPreferences.kt to store persistent data&#10;- Implemented Logout&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;">
+      <created>1622629602383</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1622629602383</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -419,46 +452,14 @@
       <collection />
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt</url>
-          <line>42</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt</url>
-          <line>12</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt</url>
-          <line>17</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt</url>
-          <line>22</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt</url>
-          <line>23</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt</url>
-          <line>18</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/MainView.kt</url>
-          <line>13</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Added replacing view in MainView.kt" />
+    <MESSAGE value="- Replaced login rest api call with admin one&#10;- Implemented Splash logic&#10;- Implemented AppPreferences.kt to store persistent data&#10;- Implemented Logout&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Replaced login rest api call with admin one&#10;- Implemented Splash logic&#10;- Implemented AppPreferences.kt to store persistent data&#10;- Implemented Logout&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
