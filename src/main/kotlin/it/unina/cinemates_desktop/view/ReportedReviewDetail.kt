@@ -1,5 +1,6 @@
 package it.unina.cinemates_desktop.view
 
+import it.unina.cinemates_desktop.Styles
 import it.unina.cinemates_desktop.model.Review
 import javafx.scene.control.Button
 import javafx.scene.control.Label
@@ -9,6 +10,7 @@ import javafx.scene.layout.AnchorPane
 import javafx.scene.shape.Rectangle
 import tornadofx.View
 import tornadofx.action
+import tornadofx.addClass
 
 class ReportedReviewDetail(review: Review) : View() {
 
@@ -52,12 +54,18 @@ class ReportedReviewDetail(review: Review) : View() {
         usernameLabel.text = review.username
         reviewTextLabel.text = review.reviewText
 
-        restoreBtn.action {
-            println("Restore " + review.reviewId)
+        restoreBtn.also {
+            it.action {
+                println("Restore " + review.reviewId)
+            }
+            it.addClass(Styles.redButton)
         }
 
-        deletePermanentlyBtn.action {
-            println("Delete " + review.reviewId)
+        deletePermanentlyBtn.also {
+            it.action {
+                println("Delete " + review.reviewId)
+            }
+            it.addClass(Styles.redButton)
         }
     }
 }
