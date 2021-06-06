@@ -11,13 +11,14 @@ import javafx.scene.control.Button
 import javafx.scene.control.ComboBox
 import javafx.scene.control.Label
 import javafx.scene.image.ImageView
-import javafx.scene.layout.GridPane
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.HBox
-import javafx.scene.layout.VBox
+import javafx.scene.layout.*
+import javafx.scene.paint.Color
+import javafx.scene.shape.Circle
+import javafx.scene.shape.Rectangle
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tornadofx.*
+
 
 class HomeView : View("Cinemates") {
     private val user: UserModel by inject()
@@ -29,16 +30,19 @@ class HomeView : View("Cinemates") {
     val timerangeCombobox : ComboBox<String> by fxid("timerangeCombobox")
     val reviewsReportedAsInappropriateGrid : GridPane by fxid("reviewsReportedAsInappropriateGrid")
     val logoutBtn: Button by fxid("logoutBtn")
+    val reviewsPreviousPageBtn: Button by fxid("reviewsPreviousPage")
+    val reviewsNextPageBtn: Button by fxid("reviewsNextPage")
 
     private var reviewsPage: Int = 0
     private var reviewsList: ArrayList<Review> = arrayListOf()
+    private var chunkedReviewsList: List<List<Review>> = listOf()
 
     init {
-
         GlobalScope.launch { viewModel.getInappropriates() }
         subscribe<HomeViewModel.GetInappropriatesResponse> {
             it.getInappropriatesResponse?.let { inappropriatesResponse ->
                 reviewsList = ArrayList(inappropriatesResponse.reviews)
+                chunkedReviewsList = reviewsList.chunked(4)
                 bindInappropriates(reviewsList)
             }
         }
@@ -46,37 +50,79 @@ class HomeView : View("Cinemates") {
         timerangeCombobox.items = FXCollections.observableArrayList("Sempre", "Settimana", "Mese")
         timerangeCombobox.value = "Sempre"
 
+        reviewsPreviousPageBtn.action {
+            if (reviewsPage > 0) {
+                reviewsPage -= 1
+                reviewsReportedAsInappropriateGrid.removeAllRows()
+                bindInappropriates(chunkedReviewsList[reviewsPage])
+                //bindInappropriates(reviewsList.subList((reviewsPage * 4) - 4, (reviewsPage * 4) - 1))
+            }
+        }
+
+        reviewsNextPageBtn.action {
+            if (reviewsPage < chunkedReviewsList.size - 1) {
+                reviewsPage += 1
+                reviewsReportedAsInappropriateGrid.removeAllRows()
+                bindInappropriates(chunkedReviewsList[reviewsPage])
+                //bindInappropriates(reviewsList.chunked())
+            }
+        }
+
         logoutBtn.action {
             loginViewModel.logout()
         }
     }
 
-    private fun bindInappropriates(reviewsList: ArrayList<Review>) {
-        val verticalBox = VBox()
-        verticalBox.padding = Insets(20.0, 20.0, 20.0, 20.0)
-        val horizontalBox = HBox()
-        horizontalBox.alignment = Pos.CENTER_LEFT
-        verticalBox.add(horizontalBox)
+    private fun bindInappropriates(reviewsList: List<Review>) {
+        for (index in reviewsList.indices) {
+            if (index > 3) break
 
-        reviewsList.forEachIndexed { index, review ->
-            if(index <= 3){
-                val profilePic = ImageView("/propic_1.png")
-                profilePic.fitHeight = 30.0
-                profilePic.fitWidth = 30.0
+            val verticalBox = VBox()
+            verticalBox.padding = Insets(20.0, 20.0, 20.0, 20.0)
+            verticalBox.spacing = 10.0
+            val horizontalBox = HBox()
+            horizontalBox.alignment = Pos.CENTER_LEFT
+            horizontalBox.spacing = 10.0
+            verticalBox.add(horizontalBox)
 
-                val usernameLabel = Label(review.username)
+            var profilePicUrl = reviewsList[index].profilePic
 
-                horizontalBox.add(profilePic)
-                horizontalBox.add(usernameLabel)
-
-                val reviewLabel = Label(review.reviewText)
-
-                verticalBox.add(reviewLabel)
-
-                reviewsReportedAsInappropriateGrid.add(verticalBox, index%2, if(index<2) 0 else 1, 1, 1)
+            if (profilePicUrl.startsWith("propic")) {
+                profilePicUrl = when (profilePicUrl) {
+                    "propic1" -> "/propic_1.png"
+                    "propic2" -> "/propic_2.png"
+                    "propic3" -> "/propic_3.png"
+                    "propic4" -> "/propic_4.png"
+                    "propic5" -> "/propic_5.png"
+                    else -> "/propic_1.png"
+                }
             }
-        }
 
+            val profilePic = ImageView(profilePicUrl)
+            profilePic.fitHeight = 30.0
+            profilePic.fitWidth = 30.0
+
+            val clip = Rectangle(profilePic.fitWidth, profilePic.fitHeight)
+            clip.arcWidth = 30.0
+            clip.arcHeight = 30.0
+            profilePic.clip = clip
+
+            horizontalBox.add(profilePic)
+
+            val usernameLabel = Label(reviewsList[index].username)
+            usernameLabel.textFill = Color.WHITE
+            usernameLabel.style = "-fx-font-weight: bold"
+
+            horizontalBox.add(profilePic)
+            horizontalBox.add(usernameLabel)
+
+            val reviewLabel = Label(reviewsList[index].reviewText)
+            reviewLabel.textFill = Color.WHITE
+
+            verticalBox.add(reviewLabel)
+
+            reviewsReportedAsInappropriateGrid.add(verticalBox, index % 2, if (index < 2) 0 else 1, 1, 1)
+        }
     }
 
     override fun onDock() {
