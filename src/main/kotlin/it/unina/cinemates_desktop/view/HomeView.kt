@@ -13,7 +13,6 @@ import javafx.scene.control.Label
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
-import javafx.scene.shape.Circle
 import javafx.scene.shape.Rectangle
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -80,6 +79,11 @@ class HomeView : View("Cinemates") {
             val verticalBox = VBox()
             verticalBox.padding = Insets(20.0, 20.0, 20.0, 20.0)
             verticalBox.spacing = 10.0
+
+            verticalBox.setOnMouseClicked {
+                ReportedReviewDetail(reviewsList[index]).openWindow()
+            }
+
             val horizontalBox = HBox()
             horizontalBox.alignment = Pos.CENTER_LEFT
             horizontalBox.spacing = 10.0
