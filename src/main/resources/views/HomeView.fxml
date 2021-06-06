@@ -17,6 +17,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 <BorderPane prefHeight="759.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -162,6 +163,7 @@
                <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../propic_1.png" />
                </ImageView>
+               <Button fx:id="logoutBtn" text="Log Out"/>
             </HBox>
          </ToolBar>
       </HBox>
