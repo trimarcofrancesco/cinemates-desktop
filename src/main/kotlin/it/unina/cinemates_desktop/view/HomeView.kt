@@ -7,6 +7,7 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.ComboBox
 import javafx.scene.control.Label
+import javafx.scene.image.ImageView
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
@@ -27,12 +28,23 @@ class HomeView : View("Cinemates") {
         timerangeCombobox.value = "Sempre"
 
         val verticalBox = VBox()
-        verticalBox.padding = Insets(5.0, 5.0, 5.0, 5.0)
+        verticalBox.padding = Insets(20.0, 20.0, 20.0, 20.0)
         val horizontalBox = HBox()
+        horizontalBox.alignment = Pos.CENTER_LEFT
         verticalBox.add(horizontalBox)
 
+        val profilePic = ImageView("/propic_1.png")
+        profilePic.fitHeight = 30.0
+        profilePic.fitWidth = 30.0
+
         val usernameLabel = Label("Test")
+
+        horizontalBox.add(profilePic)
         horizontalBox.add(usernameLabel)
+
+        val reviewLabel = Label("Lorem ipsum")
+
+        verticalBox.add(reviewLabel)
 
         reviewsReportedAsInappropriateGrid.add(verticalBox, 0, 0, 1, 1)
     }
