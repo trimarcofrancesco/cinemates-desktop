@@ -49,7 +49,11 @@ class LoginViewModel : ViewModel() {
     fun logout() {
         AppPreferences.remove(AppPreferences.LOGIN_RESPONSE.first)
 
+        println("Logged out")
+        println(AppPreferences.loginResponse)
+
         user.item = null
+        println(user.item)
         primaryStage.uiComponent<UIComponent>()?.replaceWith(LoginView::class, transition = ViewTransition.FadeThrough(.5.seconds), centerOnScreen = true)
     }
 }

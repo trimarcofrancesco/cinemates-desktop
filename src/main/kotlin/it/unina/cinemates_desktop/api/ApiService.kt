@@ -12,6 +12,10 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     suspend fun getInappropriates(@Path("userId") userId: String, @Header("Authorization") authorization: String): ApiResponse<InappropriatesResponse>
 
+    @GET("users/{userId}/stats")
+    @Headers("Content-Type: application/json")
+    suspend fun getStats(@Path("userId") userId: String, @Header("Authorization") authorization: String, @Query("period") period: Int): ApiResponse<StatsResponse>
+
     @DELETE("users/{userId}/reviews/reports")
     @Headers("Content-Type: application/json")
     suspend fun removeReports(@Path("userId") userId: String, @Header("Authorization") authorization: String, @Query("deleteFrom") deleteFrom: String, @Query("itemId") itemId: Int): ApiResponse<Int>
