@@ -130,8 +130,8 @@
                            </VBox.margin>
                         </GridPane>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="NEVER">
-                           <Button fx:id="reviewsPreviousPage" mnemonicParsing="false" text="&lt;" />
-                           <Button fx:id="reviewsNextPage" mnemonicParsing="false" text="&gt;" />
+                           <Button fx:id="reviewsPreviousPageBtn" mnemonicParsing="false" text="&lt;" />
+                           <Button fx:id="reviewsNextPageBtn" mnemonicParsing="false" text="&gt;" />
                         </HBox>
                         <padding>
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -162,8 +162,8 @@
                            </VBox.margin>
                         </GridPane>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="NEVER">
-                           <Button fx:id="commentsPreviousPage" mnemonicParsing="false" text="&lt;" />
-                           <Button fx:id="commentsNextPage" mnemonicParsing="false" text="&gt;" />
+                           <Button fx:id="commentsPreviousPageBtn" mnemonicParsing="false" text="&lt;" />
+                           <Button fx:id="commentsNextPageBtn" mnemonicParsing="false" text="&gt;" />
                         </HBox>
                      </VBox>
                   </StackPane>

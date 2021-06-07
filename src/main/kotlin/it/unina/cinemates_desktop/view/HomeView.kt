@@ -1,6 +1,7 @@
 package it.unina.cinemates_desktop.view
 
 import it.unina.cinemates_desktop.Styles
+import it.unina.cinemates_desktop.model.Comment
 import it.unina.cinemates_desktop.model.Review
 import it.unina.cinemates_desktop.model.UserModel
 import it.unina.cinemates_desktop.viewmodel.HomeViewModel
@@ -32,8 +33,8 @@ class HomeView : View("Cinemates") {
 
     private val profileMenuButton: MenuButton by fxid("profileMenuButton")
     private val logoutBtn: MenuItem by fxid("logoutBtn")
-    private val reviewsPreviousPageBtn: Button by fxid("reviewsPreviousPage")
-    private val reviewsNextPageBtn: Button by fxid("reviewsNextPage")
+    private val reviewsPreviousPageBtn: Button by fxid("reviewsPreviousPageBtn")
+    private val reviewsNextPageBtn: Button by fxid("reviewsNextPageBtn")
 
     private val commentsPreviousPageBtn: Button by fxid("commentsPreviousPageBtn")
     private val commentsNextPageBtn: Button by fxid("commentsNextPageBtn")
@@ -41,6 +42,9 @@ class HomeView : View("Cinemates") {
     private var reviewsPage: Int = 0
     private var reviewsList: ArrayList<Review> = arrayListOf()
     private var chunkedReviewsList: List<List<Review>> = listOf()
+    private var commentsPage: Int = 0
+    private var commentsList: ArrayList<Comment> = arrayListOf()
+    private var chunkedCommentsList: List<List<Comment>> = listOf()
 
     init {
         GlobalScope.launch { viewModel.getInappropriates() }
@@ -48,7 +52,10 @@ class HomeView : View("Cinemates") {
             it.getInappropriatesResponse?.let { inappropriatesResponse ->
                 reviewsList = ArrayList(inappropriatesResponse.reviews)
                 chunkedReviewsList = reviewsList.chunked(4)
-                bindInappropriates(reviewsList)
+                commentsList = ArrayList(inappropriatesResponse.comments)
+                chunkedCommentsList = commentsList.chunked(4)
+                bindInappropriatesReviews(reviewsList)
+                bindInappropriatesComments(commentsList)
             }
         }
 
@@ -86,7 +93,7 @@ class HomeView : View("Cinemates") {
                 if (reviewsPage > 0) {
                     reviewsPage -= 1
                     reviewsReportedAsInappropriateGrid.removeAllRows()
-                    bindInappropriates(chunkedReviewsList[reviewsPage])
+                    bindInappropriatesReviews(chunkedReviewsList[reviewsPage])
                     //bindInappropriates(reviewsList.subList((reviewsPage * 4) - 4, (reviewsPage * 4) - 1))
                 }
             }
@@ -99,8 +106,32 @@ class HomeView : View("Cinemates") {
                 if (reviewsPage < chunkedReviewsList.size - 1) {
                     reviewsPage += 1
                     reviewsReportedAsInappropriateGrid.removeAllRows()
-                    bindInappropriates(chunkedReviewsList[reviewsPage])
+                    bindInappropriatesReviews(chunkedReviewsList[reviewsPage])
                     //bindInappropriates(reviewsList.chunked())
+                }
+            }
+
+            it.addClass(Styles.prevNextButton)
+        }
+
+        commentsPreviousPageBtn.also {
+            it.action {
+                if (commentsPage > 0) {
+                    commentsPage -= 1
+                    commentsReportedAsInappropriateGrid.removeAllRows()
+                    bindInappropriatesComments(chunkedCommentsList[commentsPage])
+                }
+            }
+
+            it.addClass(Styles.prevNextButton)
+        }
+
+        commentsNextPageBtn.also {
+            it.action {
+                if (commentsPage < chunkedCommentsList.size - 1) {
+                    commentsPage += 1
+                    commentsReportedAsInappropriateGrid.removeAllRows()
+                    bindInappropriatesComments(chunkedCommentsList[commentsPage])
                 }
             }
 
@@ -112,7 +143,69 @@ class HomeView : View("Cinemates") {
         }
     }
 
-    private fun bindInappropriates(reviewsList: List<Review>) {
+    private fun bindInappropriatesComments(commentsList: List<Comment>) {
+        for (index in commentsList.indices) {
+            if (index > 3) break
+
+            val verticalBox = VBox()
+            verticalBox.style {
+                backgroundRadius += box(10.px)
+                backgroundInsets += box(0.2.px)
+                backgroundColor += Color.web("D23E31")
+            }
+            verticalBox.padding = Insets(15.0, 15.0, 15.0, 15.0)
+            verticalBox.spacing = 10.0
+
+            verticalBox.setOnMouseClicked {
+               ReportedCommentDetailsView(commentsList[index]).openWindow()
+            }
+
+            val horizontalBox = HBox()
+            horizontalBox.alignment = Pos.CENTER_LEFT
+            horizontalBox.spacing = 10.0
+            verticalBox.add(horizontalBox)
+
+            var profilePicUrl = commentsList[index].profilePic
+
+            if (profilePicUrl.startsWith("propic")) {
+                profilePicUrl = when (profilePicUrl) {
+                    "propic1" -> "/propic_1.png"
+                    "propic2" -> "/propic_2.png"
+                    "propic3" -> "/propic_3.png"
+                    "propic4" -> "/propic_4.png"
+                    "propic5" -> "/propic_5.png"
+                    else -> "/propic_1.png"
+                }
+            }
+
+            val profilePic = ImageView(profilePicUrl)
+            profilePic.fitHeight = 30.0
+            profilePic.fitWidth = 30.0
+
+            val clip = Rectangle(profilePic.fitWidth, profilePic.fitHeight)
+            clip.arcWidth = 30.0
+            clip.arcHeight = 30.0
+            profilePic.clip = clip
+
+            horizontalBox.add(profilePic)
+
+            val usernameLabel = Label(reviewsList[index].username)
+            usernameLabel.textFill = Color.WHITE
+            usernameLabel.style = "-fx-font-weight: bold"
+
+            horizontalBox.add(profilePic)
+            horizontalBox.add(usernameLabel)
+
+            val reviewLabel = Label(reviewsList[index].reviewText)
+            reviewLabel.textFill = Color.WHITE
+
+            verticalBox.add(reviewLabel)
+
+            commentsReportedAsInappropriateGrid.add(verticalBox, index % 2, if (index < 2) 0 else 1, 1, 1)
+        }
+    }
+
+    private fun bindInappropriatesReviews(reviewsList: List<Review>) {
         for (index in reviewsList.indices) {
             if (index > 3) break
 
@@ -126,7 +219,7 @@ class HomeView : View("Cinemates") {
             verticalBox.spacing = 10.0
 
             verticalBox.setOnMouseClicked {
-                ReportedReviewDetail(reviewsList[index]).openWindow()
+                ReportedReviewDetailsView(reviewsList[index]).openWindow()
             }
 
             val horizontalBox = HBox()

@@ -1,24 +1,32 @@
 package it.unina.cinemates_desktop.view
 
 import it.unina.cinemates_desktop.Styles
+import it.unina.cinemates_desktop.model.Comment
+import it.unina.cinemates_desktop.model.DeleteData
 import it.unina.cinemates_desktop.model.Review
+import it.unina.cinemates_desktop.viewmodel.HomeViewModel
+import it.unina.cinemates_desktop.viewmodel.SharedReportedItemDetailsViewModel
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.AnchorPane
 import javafx.scene.shape.Rectangle
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import tornadofx.View
 import tornadofx.action
 import tornadofx.addClass
 
-class ReportedReviewDetail(review: Review) : View() {
+class ReportedCommentDetailsView(comment: Comment) : View() {
+
+    private val sharedViewModel : SharedReportedItemDetailsViewModel by inject()
 
     override val root : AnchorPane by fxml("/views/ReportedReviewDetail.fxml")
 
     private val profilePicImageView : ImageView by fxid("profilePicImageView")
     private val usernameLabel : Label by fxid("usernameLabel")
-    private val reviewTextLabel: Label by fxid("reviewTextLabel")
+    private val commentTextLabel: Label by fxid("reviewTextLabel")
     private val restoreBtn: Button by fxid("restoreBtn")
     private val deletePermanentlyBtn: Button by fxid("deletePermanentlyBtn")
 
@@ -29,9 +37,9 @@ class ReportedReviewDetail(review: Review) : View() {
     }
 
     init {
-        println("opened " + review.reviewText)
+        println("opened " + comment.commentText)
 
-        var profilePicUrl = review.profilePic
+        var profilePicUrl = comment.profilePic
 
         if (profilePicUrl.startsWith("propic")) {
             profilePicUrl = when (profilePicUrl) {
@@ -51,19 +59,22 @@ class ReportedReviewDetail(review: Review) : View() {
         clip.arcHeight = 50.0
         profilePicImageView.clip = clip
 
-        usernameLabel.text = review.username
-        reviewTextLabel.text = review.reviewText
+        usernameLabel.text = comment.username
+        commentTextLabel.text = comment.commentText
 
         restoreBtn.also {
             it.action {
-                println("Restore " + review.reviewId)
+                println("Restore " + comment.commentId)
+                GlobalScope.launch {sharedViewModel.deleteReports(DeleteData("comment", comment.commentId))}
+
             }
             it.addClass(Styles.redButton)
         }
 
         deletePermanentlyBtn.also {
             it.action {
-                println("Delete " + review.reviewId)
+                println("Delete " + comment.commentId)
+                GlobalScope.launch {sharedViewModel.deleteItem(DeleteData("comment", comment.commentId))}
             }
             it.addClass(Styles.redButton)
         }

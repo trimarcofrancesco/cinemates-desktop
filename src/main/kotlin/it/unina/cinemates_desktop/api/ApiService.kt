@@ -14,10 +14,10 @@ interface ApiService {
 
     @DELETE("users/{userId}/reviews/reports")
     @Headers("Content-Type: application/json")
-    suspend fun removeReports(@Path("userId") userId: String, @Header("Authorization") authorization: String, @Body data: DeleteData): ApiResponse<Int>
+    suspend fun removeReports(@Path("userId") userId: String, @Header("Authorization") authorization: String, @Query("deleteFrom") deleteFrom: String, @Query("itemId") itemId: Int): ApiResponse<Int>
 
     @DELETE("users/{userId}/reviews")
     @Headers("Content-Type: application/json")
-    suspend fun removeInappropriateItem(@Path("userId") userId: String, @Header("Authorization") authorization: String, @Body data: DeleteData): ApiResponse<Int>
+    suspend fun removeInappropriateItem(@Path("userId") userId: String, @Header("Authorization") authorization: String, @Query("deleteFrom") deleteFrom: String, @Query("itemId") itemId: Int): ApiResponse<Int>
 
 }
