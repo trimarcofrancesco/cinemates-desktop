@@ -66,6 +66,11 @@ class HomeView : View("Cinemates") {
             }
         }
 
+        subscribe<HomeViewModel.NetworkErrorEvent> {
+            println("NetworkErrorEvent")
+            alert(Alert.AlertType.WARNING, header = it.message, owner = currentWindow)
+        }
+
         subscribe<HomeViewModel.GetInappropriatesResponse> {
             it.getInappropriatesResponse?.let { inappropriatesResponse ->
                 reviewsList = ArrayList(inappropriatesResponse.reviews)

@@ -1,8 +1,11 @@
 package it.unina.cinemates_desktop.view
 
+import it.unina.cinemates_desktop.Styles
 import it.unina.cinemates_desktop.viewmodel.LoginViewModel
 import javafx.beans.property.SimpleStringProperty
 import javafx.geometry.Orientation
+import javafx.geometry.Pos
+import javafx.scene.control.Alert
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tornadofx.*
@@ -19,11 +22,14 @@ class LoginView : View("Cinemates") {
 
         subscribe<LoginViewModel.NetworkErrorEvent> {
             println("NetworkErrorEvent")
+            alert(Alert.AlertType.WARNING, header = it.message, owner = currentWindow)
+
             println(it.message)
         }
 
         subscribe<LoginViewModel.GenericErrorEvent> {
             println("GenericErrorEvent")
+            it.genericError?.let { genericError -> alert(Alert.AlertType.WARNING, header = genericError.message, owner = currentWindow) }
             println(it.genericError?.message)
         }
 
@@ -44,7 +50,7 @@ class LoginView : View("Cinemates") {
                     textfield(username).required()
                 }
                 fieldset("Password") {
-                    textfield(password).required()
+                    passwordfield(password).required()
                 }
                 button("Accedi") {
                     enableWhen(viewModel.valid)
@@ -55,8 +61,22 @@ class LoginView : View("Cinemates") {
                             viewModel.login(username.value, password.value)
                         }
                     }
+                    addClass(Styles.redButton)
+                    style {
+                        prefWidth = 200.px
+                    }
+                }
+                style {
+                    alignment = Pos.CENTER
+                    maxWidth = 500.px
                 }
             }
+            style {
+                alignment = Pos.CENTER
+            }
+        }
+        style {
+            alignment = Pos.CENTER
         }
     }
 
