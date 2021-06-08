@@ -53,9 +53,17 @@ class HomeView : View("Cinemates") {
     private var chunkedCommentsList: List<List<Comment>> = listOf()
 
     init {
-        GlobalScope.launch {
-            viewModel.getInappropriates()
-            viewModel.getStats(viewModel.currentPeriod)
+        println("HomeView init")
+
+        subscribe<HomeViewModel.GenericErrorEvent> {
+            it.genericError?.let { genericError ->
+                if (genericError.error == "errors/unauthorized") {
+                    alert(Alert.AlertType.WARNING, header = "Sessione scaduta, effettua nuovamente l'accesso", owner = currentWindow)
+                    loginViewModel.logout()
+                } else {
+                    alert(Alert.AlertType.WARNING, header = genericError.message, owner = currentWindow)
+                }
+            }
         }
 
         subscribe<HomeViewModel.GetInappropriatesResponse> {
@@ -76,7 +84,6 @@ class HomeView : View("Cinemates") {
         }
 
         timerangeCombobox.items = FXCollections.observableArrayList("Sempre", "Settimana", "Mese")
-        timerangeCombobox.value = "Sempre"
 
         timerangeCombobox.setOnAction {
             GlobalScope.launch {
@@ -94,6 +101,18 @@ class HomeView : View("Cinemates") {
                 }
                 viewModel.getStats(viewModel.currentPeriod)
             }
+        }
+
+        shakeHomeView()
+    }
+
+    fun shakeHomeView() {
+        timerangeCombobox.value = "Sempre"
+        viewModel.currentPeriod = HomeViewModel.PERIOD.EVER.value
+
+        GlobalScope.launch {
+            viewModel.getInappropriates()
+            viewModel.getStats(viewModel.currentPeriod)
         }
 
         var profilePicUrl = user.profile.value.profilePic
@@ -128,7 +147,6 @@ class HomeView : View("Cinemates") {
                     reviewsPage -= 1
                     reviewsReportedAsInappropriateGrid.removeAllRows()
                     bindInappropriatesReviews(chunkedReviewsList[reviewsPage])
-                    //bindInappropriates(reviewsList.subList((reviewsPage * 4) - 4, (reviewsPage * 4) - 1))
                 }
             }
 
@@ -141,7 +159,6 @@ class HomeView : View("Cinemates") {
                     reviewsPage += 1
                     reviewsReportedAsInappropriateGrid.removeAllRows()
                     bindInappropriatesReviews(chunkedReviewsList[reviewsPage])
-                    //bindInappropriates(reviewsList.chunked())
                 }
             }
 

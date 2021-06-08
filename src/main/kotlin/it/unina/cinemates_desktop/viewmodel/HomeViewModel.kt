@@ -5,14 +5,12 @@ import it.unina.cinemates_desktop.api.safeApiCall
 import it.unina.cinemates_desktop.di.NetworkModule
 import it.unina.cinemates_desktop.model.*
 import it.unina.cinemates_desktop.util.AppPreferences
+import it.unina.cinemates_desktop.view.LoginView
 import kotlinx.coroutines.Dispatchers
 import tornadofx.FXEvent
 import tornadofx.ViewModel
 
 class HomeViewModel: ViewModel() {
-
-    private var userId: String = AppPreferences.loginResponse!!.profile.userId
-    private var authorization: String = AppPreferences.loginResponse!!.accessToken
 
     enum class PERIOD(val value: Int) {
         EVER(0),
@@ -28,7 +26,7 @@ class HomeViewModel: ViewModel() {
     class GetStatsResponse(val getStatsResponse : StatsResponse?) : FXEvent()
 
     suspend fun getInappropriates() {
-        fire(GetInappropriatesResponse(
+        /*fire(GetInappropriatesResponse(
             InappropriatesResponse(
                 listOf(
                     Review(0, "luigi", "https://scontent-fco1-1.xx.fbcdn.net/v/t1.18169-9/14034747_10202105639200517_192623426590496151_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=174925&_nc_ohc=oiYC4Qw7AOEAX_SO17J&_nc_ht=scontent-fco1-1.xx&oh=912e23540591cbb5bde1750378b87069&oe=60CD34CF", "Bella!", "012345"),
@@ -51,8 +49,8 @@ class HomeViewModel: ViewModel() {
                     Comment(7, "mr 30", "propic1", "Solo 29??", "012345")
                 )
             )
-        ))
-        /*when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getInappropriates(userId, authorization) }){
+        ))*/
+        when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getInappropriates(AppPreferences.loginResponse!!.profile.userId, AppPreferences.loginResponse!!.accessToken) }){
             is ResponseWrapper.NetworkError -> {
                 fire(NetworkErrorEvent("Connessione ad internet assente"))
             }
@@ -64,7 +62,7 @@ class HomeViewModel: ViewModel() {
                 fire(GetInappropriatesResponse(response.data.result))
                 println("Success")
             }
-        }*/
+        }
     }
 
     suspend fun getStats(period: Int = 0) {
@@ -79,7 +77,7 @@ class HomeViewModel: ViewModel() {
                 StatsResponse(2, 1, 10)
             ))
         }*/
-        when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getStats(userId, authorization, period) }) {
+        when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getStats(AppPreferences.loginResponse!!.profile.userId, AppPreferences.loginResponse!!.accessToken, period) }) {
             is ResponseWrapper.NetworkError -> {
                 fire(NetworkErrorEvent("Connessione ad internet assente"))
             }

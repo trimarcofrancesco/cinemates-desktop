@@ -8,6 +8,7 @@ import it.unina.cinemates_desktop.util.AppPreferences
 import it.unina.cinemates_desktop.view.LoginView
 import kotlinx.coroutines.Dispatchers
 import tornadofx.*
+import kotlin.streams.asSequence
 
 class LoginViewModel : ViewModel() {
 
@@ -23,21 +24,23 @@ class LoginViewModel : ViewModel() {
             is ResponseWrapper.NetworkError -> {
                 fire(NetworkErrorEvent("Connessione ad internet assente"))
             }
+
             is ResponseWrapper.GenericError -> {
                 fire(GenericErrorEvent(response.errorData))
                 println("GenericError")
             }
+
             is ResponseWrapper.Success -> {
                 response.data.result?.let { loginResponse ->
                     user.item = loginResponse.toUser()
 
                     AppPreferences.loginResponse = loginResponse
-                    /*AppPreferences.userPoolTokens = UserTokens(
+                    AppPreferences.userPoolTokens = UserTokens(
                         accessToken = loginResponse.accessToken,
                         expiresIn = loginResponse.expiresIn,
                         refreshToken = loginResponse.refreshToken,
                         idToken = loginResponse.idToken
-                    )*/
+                    )
 
                     fire(LoginSucceededEvent(response.data.result))
                 }
@@ -49,11 +52,10 @@ class LoginViewModel : ViewModel() {
     fun logout() {
         AppPreferences.remove(AppPreferences.LOGIN_RESPONSE.first)
 
-        println("Logged out")
-        println(AppPreferences.loginResponse)
-
         user.item = null
-        println(user.item)
+
+        println("Logged out")
+
         primaryStage.uiComponent<UIComponent>()?.replaceWith(LoginView::class, transition = ViewTransition.FadeThrough(.5.seconds), centerOnScreen = true)
     }
 }

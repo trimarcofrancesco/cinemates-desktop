@@ -8,12 +8,15 @@ import kotlinx.coroutines.launch
 import tornadofx.*
 
 class LoginView : View("Cinemates") {
+    private val homeView : HomeView by inject()
     private val viewModel : LoginViewModel by inject()
 
     private val username = viewModel.bind { SimpleStringProperty() }
     private val password = viewModel.bind { SimpleStringProperty() }
 
     init {
+        println("LoginView init")
+
         subscribe<LoginViewModel.NetworkErrorEvent> {
             println("NetworkErrorEvent")
             println(it.message)
@@ -26,8 +29,11 @@ class LoginView : View("Cinemates") {
 
         subscribe<LoginViewModel.LoginSucceededEvent> {
             println("LoginSucceededEvent")
-            println(it.loginResponse?.profile.toString())
-            this@LoginView.replaceWith(HomeView::class, transition = ViewTransition.FadeThrough(.5.seconds), centerOnScreen = true)
+            println(it.loginResponse?.toString())
+            this@LoginView.replaceWith(homeView, transition = ViewTransition.FadeThrough(.5.seconds), centerOnScreen = true)
+            runLater {
+                homeView.shakeHomeView()
+            }
         }
     }
 
