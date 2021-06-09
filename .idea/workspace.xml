@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="-Implemented getInappropriates function&#10;-Added HomeViewModel.kt&#10;-Added temporally logoutBtn">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/ReportedCommentDetailsView.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/SharedReportedItemDetailsViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/api/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/api/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/ReportedReviewDetail.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/ReportedReviewDetailsView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/HomeViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/HomeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/HomeView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes" />
     <list id="02c5f427-83f6-47ec-80b9-6943e3ece36d" name="Changes by francescotrimarco" comment="-First implementation of grid layout(really)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,17 +272,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -385,7 +365,7 @@
       <workItem from="1622707912436" duration="464000" />
       <workItem from="1622973000158" duration="2853000" />
       <workItem from="1622987527689" duration="5615000" />
-      <workItem from="1623055251564" duration="7368000" />
+      <workItem from="1623055251564" duration="7760000" />
     </task>
     <task id="LOCAL-00001" summary="- Added replacing view in MainView.kt">
       <created>1622579072280</created>
@@ -422,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622991242800</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes">
+      <created>1623063855414</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1623063855414</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -496,7 +483,8 @@
     <MESSAGE value="- First implementation for gridLayout&#10;- Implemented new API call&#10;- Added DeleteData.kt&#10;&#10;Co-authored-by: Francesco Trimarco &lt;trimarco.francesco@gmail.com&gt;" />
     <MESSAGE value="-First implementation of grid layout(really)" />
     <MESSAGE value="-Implemented getInappropriates function&#10;-Added HomeViewModel.kt&#10;-Added temporally logoutBtn" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Implemented getInappropriates function&#10;-Added HomeViewModel.kt&#10;-Added temporally logoutBtn" />
+    <MESSAGE value="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
