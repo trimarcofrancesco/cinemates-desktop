@@ -46,7 +46,7 @@
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </StackPane.margin>
                      </Label>
-                     <Label text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                     <Label fx:id="usersCountLabel" text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
                         <font>
                            <Font name="System Bold" size="64.0" />
                         </font>
@@ -64,7 +64,7 @@
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </StackPane.margin>
                      </Label>
-                     <Label text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                     <Label fx:id="searchesCountLabel" text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
                         <font>
                            <Font name="System Bold" size="64.0" />
                         </font>
@@ -82,7 +82,7 @@
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </StackPane.margin>
                      </Label>
-                     <Label text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                     <Label fx:id="listsCountLabel" text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
                         <font>
                            <Font name="System Bold" size="64.0" />
                         </font>
@@ -92,7 +92,7 @@
                      </Label>
                   </StackPane>
                   <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #C52E21, #C52E21; -fx-background-radius: 20, 0; -fx-background-insets: 0,8;" GridPane.columnIndex="3">
-                     <Label text="Numero di commenti" textFill="WHITE" StackPane.alignment="TOP_LEFT">
+                     <Label text="Numero di recensioni" textFill="WHITE" StackPane.alignment="TOP_LEFT">
                         <font>
                            <Font name="System Font" size="18.0" />
                         </font>
@@ -100,7 +100,7 @@
                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </StackPane.margin>
                      </Label>
-                     <Label text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                     <Label fx:id="reviewsCountLabel" text="0" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
                         <font>
                            <Font name="System Bold" size="64.0" />
                         </font>

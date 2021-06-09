@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes" />
-    <list id="02c5f427-83f6-47ec-80b9-6943e3ece36d" name="Changes by francescotrimarco" comment="-First implementation of grid layout(really)" />
+    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="- Added replacing view in MainView.kt">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/model/StatsResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/api/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/api/ApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/HomeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/HomeView.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +34,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="cinemates-desktop" type="f1a62948:ProjectNode" />
+                <item name="tornadofx-gradle-project" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -44,7 +51,6 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="FxmlFile" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -206,9 +212,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/views" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -217,6 +222,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/views" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -268,6 +274,17 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -361,11 +378,10 @@
       <workItem from="1622630083075" duration="255000" />
       <workItem from="1622630363650" duration="547000" />
       <workItem from="1622630964700" duration="8589000" />
-      <workItem from="1622706141374" duration="1072000" />
-      <workItem from="1622707912436" duration="464000" />
-      <workItem from="1622973000158" duration="2853000" />
-      <workItem from="1622987527689" duration="5615000" />
-      <workItem from="1623055251564" duration="7760000" />
+      <workItem from="1623009483937" duration="1347000" />
+      <workItem from="1623010870289" duration="4701000" />
+      <workItem from="1623015637986" duration="13000" />
+      <workItem from="1623099080139" duration="2783000" />
     </task>
     <task id="LOCAL-00001" summary="- Added replacing view in MainView.kt">
       <created>1622579072280</created>
@@ -381,33 +397,33 @@
       <option name="project" value="LOCAL" />
       <updated>1622629602383</updated>
     </task>
-    <task id="LOCAL-00003" summary="- First implementation for gridLayout&#10;- Implemented new API call&#10;- Added DeleteData.kt&#10;&#10;Co-authored-by: Francesco Trimarco &lt;trimarco.francesco@gmail.com&gt;">
-      <created>1622975845023</created>
+    <task id="LOCAL-00003" summary="- Small layout impl">
+      <created>1622988966638</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1622975845023</updated>
+      <updated>1622988966638</updated>
     </task>
-    <task id="LOCAL-00004" summary="-First implementation of grid layout(really)">
-      <created>1622987635669</created>
+    <task id="LOCAL-00004" summary="- Fixed layout for HomeView&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;">
+      <created>1622995856875</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1622987635669</updated>
+      <updated>1622995856875</updated>
     </task>
-    <task id="LOCAL-00005" summary="-Implemented getInappropriates function&#10;-Added HomeViewModel.kt&#10;-Added temporally logoutBtn">
-      <created>1622991242800</created>
+    <task id="LOCAL-00005" summary="- Added ReportedReviewDetail view&#10;&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;">
+      <created>1622998043786</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1622991242800</updated>
+      <updated>1622998043786</updated>
     </task>
-    <task id="LOCAL-00006" summary="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes">
-      <created>1623063855414</created>
+    <task id="LOCAL-00006" summary="- Layout improvements">
+      <created>1623015581929</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1623063855414</updated>
+      <updated>1623015581929</updated>
     </task>
     <option name="localTasksCounter" value="7" />
     <servers />
@@ -457,18 +473,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -480,11 +484,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- Added replacing view in MainView.kt" />
     <MESSAGE value="- Replaced login rest api call with admin one&#10;- Implemented Splash logic&#10;- Implemented AppPreferences.kt to store persistent data&#10;- Implemented Logout&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;" />
-    <MESSAGE value="- First implementation for gridLayout&#10;- Implemented new API call&#10;- Added DeleteData.kt&#10;&#10;Co-authored-by: Francesco Trimarco &lt;trimarco.francesco@gmail.com&gt;" />
-    <MESSAGE value="-First implementation of grid layout(really)" />
-    <MESSAGE value="-Implemented getInappropriates function&#10;-Added HomeViewModel.kt&#10;-Added temporally logoutBtn" />
-    <MESSAGE value="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Implemented logic behind delete and restore btn&#10;-Added SharedReportedItemDetailsViewModel.kt&#10;-Added ReportedCommentDetailsView.kt&#10;-Adaptation to BE changes&#10;-Small Fixes" />
+    <MESSAGE value="- Small layout impl" />
+    <MESSAGE value="- Fixed layout for HomeView&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;" />
+    <MESSAGE value="- Added ReportedReviewDetail view&#10;&#10;&#10;Co-authored-by: Mariano Manzi &lt;mariano.manzi@live.com&gt;" />
+    <MESSAGE value="- Layout improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Layout improvements" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
@@ -694,7 +698,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../../Program Files/Java/jdk1.8.0_102/javafx-src.zip!/javafx/scene/control/TableView.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/javafx-src.zip!/javafx/scene/control/TableView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/example/demo/view/MainView.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">

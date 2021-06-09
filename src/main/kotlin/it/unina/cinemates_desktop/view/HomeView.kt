@@ -3,6 +3,7 @@ package it.unina.cinemates_desktop.view
 import it.unina.cinemates_desktop.Styles
 import it.unina.cinemates_desktop.model.Comment
 import it.unina.cinemates_desktop.model.Review
+import it.unina.cinemates_desktop.model.StatsResponse
 import it.unina.cinemates_desktop.model.UserModel
 import it.unina.cinemates_desktop.viewmodel.HomeViewModel
 import it.unina.cinemates_desktop.viewmodel.LoginViewModel
@@ -28,6 +29,11 @@ class HomeView : View("Cinemates") {
 
     private val timerangeCombobox : ComboBox<String> by fxid("timerangeCombobox")
 
+    private val usersCountLabel : Label by fxid("usersCountLabel")
+    private val reviewsCountLabel : Label by fxid("reviewsCountLabel")
+    private val listsCountLabel : Label by fxid("listsCountLabel")
+    private val searchesCountLabel : Label by fxid("searchesCountLabel")
+
     private val reviewsReportedAsInappropriateGrid : GridPane by fxid("reviewsReportedAsInappropriateGrid")
     private val commentsReportedAsInappropriateGrid : GridPane by fxid("commentsReportedAsInappropriateGrid")
 
@@ -47,7 +53,24 @@ class HomeView : View("Cinemates") {
     private var chunkedCommentsList: List<List<Comment>> = listOf()
 
     init {
-        GlobalScope.launch { viewModel.getInappropriates() }
+        println("HomeView init")
+
+        subscribe<HomeViewModel.GenericErrorEvent> {
+            it.genericError?.let { genericError ->
+                if (genericError.error == "errors/unauthorized") {
+                    alert(Alert.AlertType.WARNING, header = "Sessione scaduta, effettua nuovamente l'accesso", owner = currentWindow)
+                    loginViewModel.logout()
+                } else {
+                    alert(Alert.AlertType.WARNING, header = genericError.message, owner = currentWindow)
+                }
+            }
+        }
+
+        subscribe<HomeViewModel.NetworkErrorEvent> {
+            println("NetworkErrorEvent")
+            alert(Alert.AlertType.WARNING, header = it.message, owner = currentWindow)
+        }
+
         subscribe<HomeViewModel.GetInappropriatesResponse> {
             it.getInappropriatesResponse?.let { inappropriatesResponse ->
                 reviewsList = ArrayList(inappropriatesResponse.reviews)
@@ -59,8 +82,43 @@ class HomeView : View("Cinemates") {
             }
         }
 
+        subscribe<HomeViewModel.GetStatsResponse> {
+            it.getStatsResponse?.let { statsResponse ->
+                bindStats(statsResponse)
+            }
+        }
+
         timerangeCombobox.items = FXCollections.observableArrayList("Sempre", "Settimana", "Mese")
+
+        timerangeCombobox.setOnAction {
+            GlobalScope.launch {
+                when (timerangeCombobox.value) {
+                    "Sempre" -> {
+                        viewModel.currentPeriod = HomeViewModel.PERIOD.EVER.value
+                    }
+                    "Settimana" -> {
+                        viewModel.currentPeriod = HomeViewModel.PERIOD.WEEK.value
+                    }
+                    "Mese" -> {
+                        viewModel.currentPeriod = HomeViewModel.PERIOD.MONTH.value
+                    }
+                    else -> viewModel.currentPeriod = HomeViewModel.PERIOD.EVER.value
+                }
+                viewModel.getStats(viewModel.currentPeriod)
+            }
+        }
+
+        shakeHomeView()
+    }
+
+    fun shakeHomeView() {
         timerangeCombobox.value = "Sempre"
+        viewModel.currentPeriod = HomeViewModel.PERIOD.EVER.value
+
+        GlobalScope.launch {
+            viewModel.getInappropriates()
+            viewModel.getStats(viewModel.currentPeriod)
+        }
 
         var profilePicUrl = user.profile.value.profilePic
 
@@ -94,7 +152,6 @@ class HomeView : View("Cinemates") {
                     reviewsPage -= 1
                     reviewsReportedAsInappropriateGrid.removeAllRows()
                     bindInappropriatesReviews(chunkedReviewsList[reviewsPage])
-                    //bindInappropriates(reviewsList.subList((reviewsPage * 4) - 4, (reviewsPage * 4) - 1))
                 }
             }
 
@@ -107,7 +164,6 @@ class HomeView : View("Cinemates") {
                     reviewsPage += 1
                     reviewsReportedAsInappropriateGrid.removeAllRows()
                     bindInappropriatesReviews(chunkedReviewsList[reviewsPage])
-                    //bindInappropriates(reviewsList.chunked())
                 }
             }
 
@@ -141,6 +197,15 @@ class HomeView : View("Cinemates") {
         logoutBtn.action {
             loginViewModel.logout()
         }
+    }
+
+    private fun bindStats(statsResponse: StatsResponse) {
+        statsResponse.usersCount?.let {
+            usersCountLabel.text = it.toString()
+            listsCountLabel.text = (it * 2).toString()
+        }
+        statsResponse.reviewsCount?.let { reviewsCountLabel.text = it.toString() }
+        statsResponse.searchesCount?.let { searchesCountLabel.text = it.toString() }
     }
 
     private fun bindInappropriatesComments(commentsList: List<Comment>) {
@@ -189,14 +254,14 @@ class HomeView : View("Cinemates") {
 
             horizontalBox.add(profilePic)
 
-            val usernameLabel = Label(reviewsList[index].username)
+            val usernameLabel = Label(commentsList[index].username)
             usernameLabel.textFill = Color.WHITE
             usernameLabel.style = "-fx-font-weight: bold"
 
             horizontalBox.add(profilePic)
             horizontalBox.add(usernameLabel)
 
-            val reviewLabel = Label(reviewsList[index].reviewText)
+            val reviewLabel = Label(commentsList[index].commentText)
             reviewLabel.textFill = Color.WHITE
 
             verticalBox.add(reviewLabel)
