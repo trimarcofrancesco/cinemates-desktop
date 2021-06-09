@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="- Added replacing view in MainView.kt">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/model/StatsResponse.kt" afterDir="false" />
+    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="-Merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/api/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/api/ApiService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/HomeView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/HomeViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/viewmodel/LoginViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/HomeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/HomeView.fxml" afterDir="false" />
     </list>
+    <list id="02c5f427-83f6-47ec-80b9-6943e3ece36d" name="Changes by francescotrimarco" comment="-First implementation of grid layout(really)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -278,17 +274,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -472,6 +457,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -698,7 +695,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/javafx-src.zip!/javafx/scene/control/TableView.java" />
+    <entry file="jar://$PROJECT_DIR$/../../../../../Program Files/Java/jdk1.8.0_102/javafx-src.zip!/javafx/scene/control/TableView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/example/demo/view/MainView.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">

@@ -57,9 +57,9 @@ class HomeView : View("Cinemates") {
 
         subscribe<HomeViewModel.GenericErrorEvent> {
             it.genericError?.let { genericError ->
-                if (genericError.error == "errors/unauthorized") {
-                    alert(Alert.AlertType.WARNING, header = "Sessione scaduta, effettua nuovamente l'accesso", owner = currentWindow)
+                if (genericError.message == "The incoming token has expired") {
                     loginViewModel.logout()
+                    alert(Alert.AlertType.WARNING, header = "Sessione scaduta, effettua nuovamente l'accesso", owner = currentWindow)
                 } else {
                     alert(Alert.AlertType.WARNING, header = genericError.message, owner = currentWindow)
                 }
