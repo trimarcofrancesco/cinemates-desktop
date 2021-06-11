@@ -66,7 +66,7 @@ class ReportedCommentDetailsView(comment: Comment) : View() {
             it.action {
                 println("Restore " + comment.commentId)
                 GlobalScope.launch {sharedViewModel.deleteReports(DeleteData("comment", comment.commentId))}
-
+                close()
             }
             it.addClass(Styles.redButton)
         }
@@ -75,6 +75,7 @@ class ReportedCommentDetailsView(comment: Comment) : View() {
             it.action {
                 println("Delete " + comment.commentId)
                 GlobalScope.launch {sharedViewModel.deleteItem(DeleteData("comment", comment.commentId))}
+                close()
             }
             it.addClass(Styles.redButton)
         }

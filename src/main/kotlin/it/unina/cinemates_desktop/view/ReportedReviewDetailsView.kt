@@ -64,6 +64,7 @@ class ReportedReviewDetailsView(review: Review) : View() {
             it.action {
                 println("Restore " + review.reviewId)
                 GlobalScope.launch {sharedViewModel.deleteReports(DeleteData("review", review.reviewId))}
+                close()
             }
             it.addClass(Styles.redButton)
         }
@@ -72,6 +73,7 @@ class ReportedReviewDetailsView(review: Review) : View() {
             it.action {
                 println("Delete " + review.reviewId)
                 GlobalScope.launch {sharedViewModel.deleteItem(DeleteData("review", review.reviewId))}
+                close()
             }
             it.addClass(Styles.redButton)
         }
