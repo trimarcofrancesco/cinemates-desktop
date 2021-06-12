@@ -3,8 +3,8 @@ package it.unina.cinemates_desktop.model
 import com.google.gson.annotations.SerializedName
 
 data class InappropriatesResponse(
-    @SerializedName("review") var reviews: List<Review>,
-    @SerializedName("comment") var comments: List<Comment>
+    @SerializedName("review") val reviews: List<Review>,
+    @SerializedName("comment") val comments: List<Comment>
 )
 
 data class Review(

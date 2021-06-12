@@ -3,9 +3,9 @@ package it.unina.cinemates_desktop.view
 import it.unina.cinemates_desktop.Styles
 import it.unina.cinemates_desktop.model.Comment
 import it.unina.cinemates_desktop.model.DeleteData
-import it.unina.cinemates_desktop.model.Review
 import it.unina.cinemates_desktop.viewmodel.HomeViewModel
 import it.unina.cinemates_desktop.viewmodel.SharedReportedItemDetailsViewModel
+import javafx.scene.control.Alert
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.image.Image
@@ -17,8 +17,9 @@ import kotlinx.coroutines.launch
 import tornadofx.View
 import tornadofx.action
 import tornadofx.addClass
+import tornadofx.alert
 
-class ReportedCommentDetailsView(comment: Comment) : View() {
+class ReportedCommentDetailsView(comment: Comment, homeViewModel: HomeViewModel) : View() {
 
     private val sharedViewModel : SharedReportedItemDetailsViewModel by inject()
 
@@ -65,8 +66,7 @@ class ReportedCommentDetailsView(comment: Comment) : View() {
         restoreBtn.also {
             it.action {
                 println("Restore " + comment.commentId)
-                GlobalScope.launch {sharedViewModel.deleteReports(DeleteData("comment", comment.commentId))}
-                close()
+                GlobalScope.launch {sharedViewModel.restoreReviewOrComment(DeleteData("comment", comment.commentId))}
             }
             it.addClass(Styles.redButton)
         }
@@ -74,10 +74,39 @@ class ReportedCommentDetailsView(comment: Comment) : View() {
         deletePermanentlyBtn.also {
             it.action {
                 println("Delete " + comment.commentId)
-                GlobalScope.launch {sharedViewModel.deleteItem(DeleteData("comment", comment.commentId))}
-                close()
+                GlobalScope.launch {sharedViewModel.deleteReviewOrComment(DeleteData("comment", comment.commentId))}
             }
             it.addClass(Styles.redButton)
+        }
+
+        subscribe<SharedReportedItemDetailsViewModel.GenericErrorEvent> {
+            it.genericError?.let { genericError ->
+                if (genericError.error == "errors/unauthorized") {
+                    alert(Alert.AlertType.WARNING, header = "Sessione scaduta, effettua nuovamente l'accesso", owner = currentWindow)
+                    // loginViewModel.logout() // TODO
+                } else {
+                    alert(Alert.AlertType.WARNING, header = genericError.message, owner = currentWindow)
+                }
+            }
+        }
+
+        subscribe<SharedReportedItemDetailsViewModel.NetworkErrorEvent> {
+            println("NetworkErrorEvent")
+            alert(Alert.AlertType.WARNING, header = it.message, owner = currentWindow)
+        }
+
+        subscribe<SharedReportedItemDetailsViewModel.RestoreReviewOrCommentResponse> {
+            it.restoreReviewOrCommentResponse?.let {
+                homeViewModel.filterComments(comment.commentId)
+                close()
+            }
+        }
+
+        subscribe<SharedReportedItemDetailsViewModel.DeleteReviewOrCommentResponse> {
+            it.deleteReviewOrCommentResponse?.let {
+                homeViewModel.filterComments(comment.commentId)
+                close()
+            }
         }
     }
 }

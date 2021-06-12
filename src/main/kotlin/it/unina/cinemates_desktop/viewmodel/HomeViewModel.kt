@@ -5,6 +5,7 @@ import it.unina.cinemates_desktop.api.safeApiCall
 import it.unina.cinemates_desktop.di.NetworkModule
 import it.unina.cinemates_desktop.model.*
 import it.unina.cinemates_desktop.util.AppPreferences
+import it.unina.cinemates_desktop.util.MockPreferences
 import it.unina.cinemates_desktop.view.LoginView
 import kotlinx.coroutines.Dispatchers
 import tornadofx.FXEvent
@@ -25,69 +26,100 @@ class HomeViewModel: ViewModel() {
     class GetInappropriatesResponse(val getInappropriatesResponse : InappropriatesResponse?) : FXEvent()
     class GetStatsResponse(val getStatsResponse : StatsResponse?) : FXEvent()
 
+    private var reviews: List<Review> = emptyList()
+    private var comments: List<Comment> = emptyList()
+
     suspend fun getInappropriates() {
-        /*fire(GetInappropriatesResponse(
-            InappropriatesResponse(
-                listOf(
-                    Review(0, "luigi", "https://scontent-fco1-1.xx.fbcdn.net/v/t1.18169-9/14034747_10202105639200517_192623426590496151_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=174925&_nc_ohc=oiYC4Qw7AOEAX_SO17J&_nc_ht=scontent-fco1-1.xx&oh=912e23540591cbb5bde1750378b87069&oe=60CD34CF", "Bella!", "012345"),
-                    Review(1, "peppe", "propic2", "Top!", "012345"),
-                    Review(2, "capellone", "propic3", "Biutiful!", "012345"),
-                    Review(3, "mariano", "propic1", "Bella!", "012345"),
-                    Review(4, "denny", "propic4", "Ninoooo!", "012345"),
-                    Review(5, "francesco", "propic2", "Wa!", "012345"),
-                    Review(6, "capelli unti", "propic5", "Bella!", "012345"),
-                    Review(7, "mr 30", "propic1", "Solo 29??", "012345")
-                ),
-                listOf(
-                    Comment(0, "luigi", "https://scontent-fco1-1.xx.fbcdn.net/v/t1.18169-9/14034747_10202105639200517_192623426590496151_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=174925&_nc_ohc=oiYC4Qw7AOEAX_SO17J&_nc_ht=scontent-fco1-1.xx&oh=912e23540591cbb5bde1750378b87069&oe=60CD34CF", "Bella!", "012345"),
-                    Comment(1, "peppe", "propic2", "Top!", "012345"),
-                    Comment(2, "capellone", "propic3", "Biutiful!", "012345"),
-                    Comment(3, "mariano", "propic1", "Bella!", "012345"),
-                    Comment(4, "denny", "propic4", "Ninoooo!", "012345"),
-                    Comment(5, "francesco", "propic2", "Wa!", "012345"),
-                    Comment(6, "capelli unti", "propic5", "Bella!", "012345"),
-                    Comment(7, "mr 30", "propic1", "Solo 29??", "012345")
-                )
+        if (MockPreferences.isMockEnabled) {
+            val _reviewsList = listOf(
+                Review(0, "luigi", "https://scontent-fco1-1.xx.fbcdn.net/v/t1.18169-9/14034747_10202105639200517_192623426590496151_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=174925&_nc_ohc=oiYC4Qw7AOEAX_SO17J&_nc_ht=scontent-fco1-1.xx&oh=912e23540591cbb5bde1750378b87069&oe=60CD34CF", "Bella!", "012345"),
+                Review(1, "peppe", "propic2", "Top!", "012345"),
+                Review(2, "capellone", "propic3", "Biutiful!", "012345"),
+                Review(3, "mariano", "propic1", "Bella!", "012345"),
+                Review(4, "denny", "propic4", "Ninoooo!", "012345"),
+                Review(5, "francesco", "propic2", "Wa!", "012345"),
+                Review(6, "capelli unti", "propic5", "Bella!", "012345"),
+                Review(7, "mr 30", "propic1", "Solo 29??", "012345")
             )
-        ))*/
-        when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getInappropriates(AppPreferences.loginResponse!!.profile.userId, AppPreferences.loginResponse!!.accessToken) }){
-            is ResponseWrapper.NetworkError -> {
-                fire(NetworkErrorEvent("Connessione ad internet assente"))
-            }
-            is ResponseWrapper.GenericError -> {
-                fire(GenericErrorEvent(response.errorData))
-                println("GenericError")
-            }
-            is ResponseWrapper.Success -> {
-                fire(GetInappropriatesResponse(response.data.result))
-                println("Success")
+
+            val _commentsList = listOf(
+                Comment(0, "luigi", "https://scontent-fco1-1.xx.fbcdn.net/v/t1.18169-9/14034747_10202105639200517_192623426590496151_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=174925&_nc_ohc=oiYC4Qw7AOEAX_SO17J&_nc_ht=scontent-fco1-1.xx&oh=912e23540591cbb5bde1750378b87069&oe=60CD34CF", "Bella!", "012345"),
+                Comment(1, "peppe", "propic2", "Top!", "012345"),
+                Comment(2, "capellone", "propic3", "Biutiful!", "012345"),
+                Comment(3, "mariano", "propic1", "Bella!", "012345"),
+                Comment(4, "denny", "propic4", "Ninoooo!", "012345"),
+                Comment(5, "francesco", "propic2", "Wa!", "012345"),
+                Comment(6, "capelli unti", "propic5", "Bella!", "012345"),
+                Comment(7, "mr 30", "propic1", "Solo 29??", "012345")
+            )
+
+            fire(GetInappropriatesResponse(
+                InappropriatesResponse(_reviewsList, _commentsList)
+            ))
+
+            reviews = _reviewsList
+            comments = _commentsList
+        } else {
+            when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getInappropriates(AppPreferences.loginResponse!!.profile.userId, AppPreferences.loginResponse!!.accessToken) }){
+                is ResponseWrapper.NetworkError -> {
+                    fire(NetworkErrorEvent("Connessione ad internet assente"))
+                }
+                is ResponseWrapper.GenericError -> {
+                    fire(GenericErrorEvent(response.errorData))
+                    println("GenericError")
+                }
+                is ResponseWrapper.Success -> {
+                    response.data.result?.let {
+                        reviews = it.reviews
+                        comments = it.comments
+                        fire(GetInappropriatesResponse(response.data.result))
+                    }
+                    println("Success")
+                }
             }
         }
     }
 
+    fun filterReviews(reviewId: Int) {
+        reviews = reviews.filter { it.reviewId != reviewId }
+        fire(GetInappropriatesResponse(
+            InappropriatesResponse(reviews, comments)
+        ))
+    }
+
+    fun filterComments(commentId: Int) {
+        comments = comments.filter { it.commentId != commentId }
+        fire(GetInappropriatesResponse(
+            InappropriatesResponse(reviews, comments)
+        ))
+    }
+
     suspend fun getStats(period: Int = 0) {
-        /*when (period) {
-            0 -> fire(GetStatsResponse(
-                StatsResponse(3, 4, 5)
-            ))
-            7 -> fire(GetStatsResponse(
-                StatsResponse(5, 3, 1)
-            ))
-            30 -> fire(GetStatsResponse(
-                StatsResponse(2, 1, 10)
-            ))
-        }*/
-        when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getStats(AppPreferences.loginResponse!!.profile.userId, AppPreferences.loginResponse!!.accessToken, period) }) {
-            is ResponseWrapper.NetworkError -> {
-                fire(NetworkErrorEvent("Connessione ad internet assente"))
+        if (MockPreferences.isMockEnabled) {
+            when (period) {
+                0 -> fire(GetStatsResponse(
+                    StatsResponse(3, 4, 5)
+                ))
+                7 -> fire(GetStatsResponse(
+                    StatsResponse(5, 3, 1)
+                ))
+                30 -> fire(GetStatsResponse(
+                    StatsResponse(2, 1, 10)
+                ))
             }
-            is ResponseWrapper.GenericError -> {
-                fire(GenericErrorEvent(response.errorData))
-                println("GenericError")
-            }
-            is ResponseWrapper.Success -> {
-                fire(GetStatsResponse(response.data.result))
-                println("Success")
+        } else {
+            when (val response = safeApiCall(Dispatchers.IO) { NetworkModule.buildService().getStats(AppPreferences.loginResponse!!.profile.userId, AppPreferences.loginResponse!!.accessToken, period) }) {
+                is ResponseWrapper.NetworkError -> {
+                    fire(NetworkErrorEvent("Connessione ad internet assente"))
+                }
+                is ResponseWrapper.GenericError -> {
+                    fire(GenericErrorEvent(response.errorData))
+                    println("GenericError")
+                }
+                is ResponseWrapper.Success -> {
+                    fire(GetStatsResponse(response.data.result))
+                    println("Success")
+                }
             }
         }
     }

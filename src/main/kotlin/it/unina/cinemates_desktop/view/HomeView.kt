@@ -209,6 +209,8 @@ class HomeView : View("Cinemates") {
     }
 
     private fun bindInappropriatesComments(commentsList: List<Comment>) {
+        commentsReportedAsInappropriateGrid.removeAllRows()
+
         for (index in commentsList.indices) {
             if (index > 3) break
 
@@ -222,7 +224,7 @@ class HomeView : View("Cinemates") {
             verticalBox.spacing = 10.0
 
             verticalBox.setOnMouseClicked {
-               ReportedCommentDetailsView(commentsList[index]).openWindow()
+               ReportedCommentDetailsView(commentsList[index], viewModel).openWindow()
             }
 
             val horizontalBox = HBox()
@@ -271,6 +273,8 @@ class HomeView : View("Cinemates") {
     }
 
     private fun bindInappropriatesReviews(reviewsList: List<Review>) {
+        reviewsReportedAsInappropriateGrid.removeAllRows()
+
         for (index in reviewsList.indices) {
             if (index > 3) break
 
@@ -284,7 +288,7 @@ class HomeView : View("Cinemates") {
             verticalBox.spacing = 10.0
 
             verticalBox.setOnMouseClicked {
-                ReportedReviewDetailsView(reviewsList[index]).openWindow()
+                ReportedReviewDetailsView(reviewsList[index], viewModel).openWindow()
             }
 
             val horizontalBox = HBox()
