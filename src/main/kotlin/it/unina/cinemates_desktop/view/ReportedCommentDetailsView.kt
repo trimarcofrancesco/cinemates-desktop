@@ -4,6 +4,7 @@ import it.unina.cinemates_desktop.Styles
 import it.unina.cinemates_desktop.model.Comment
 import it.unina.cinemates_desktop.model.DeleteData
 import it.unina.cinemates_desktop.viewmodel.HomeViewModel
+import it.unina.cinemates_desktop.viewmodel.LoginViewModel
 import it.unina.cinemates_desktop.viewmodel.SharedReportedItemDetailsViewModel
 import javafx.scene.control.Alert
 import javafx.scene.control.Button
@@ -22,6 +23,7 @@ import tornadofx.alert
 class ReportedCommentDetailsView(comment: Comment, homeViewModel: HomeViewModel) : View() {
 
     private val sharedViewModel : SharedReportedItemDetailsViewModel by inject()
+    private val loginViewModel: LoginViewModel by inject()
 
     override val root : AnchorPane by fxml("/views/ReportedReviewDetail.fxml")
 
@@ -83,7 +85,7 @@ class ReportedCommentDetailsView(comment: Comment, homeViewModel: HomeViewModel)
             it.genericError?.let { genericError ->
                 if (genericError.error == "errors/unauthorized") {
                     alert(Alert.AlertType.WARNING, header = "Sessione scaduta, effettua nuovamente l'accesso", owner = currentWindow)
-                    // loginViewModel.logout() // TODO
+                    loginViewModel.logout()
                 } else {
                     alert(Alert.AlertType.WARNING, header = genericError.message, owner = currentWindow)
                 }
