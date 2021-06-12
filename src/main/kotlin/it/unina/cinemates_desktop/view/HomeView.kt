@@ -37,6 +37,7 @@ class HomeView : View("Cinemates") {
     private val reviewsReportedAsInappropriateGrid : GridPane by fxid("reviewsReportedAsInappropriateGrid")
     private val commentsReportedAsInappropriateGrid : GridPane by fxid("commentsReportedAsInappropriateGrid")
 
+    private val refreshStatsBtn: Button by fxid("refreshStatsBtn")
     private val profileMenuButton: MenuButton by fxid("profileMenuButton")
     private val logoutBtn: MenuItem by fxid("logoutBtn")
     private val reviewsPreviousPageBtn: Button by fxid("reviewsPreviousPageBtn")
@@ -192,6 +193,13 @@ class HomeView : View("Cinemates") {
             }
 
             it.addClass(Styles.prevNextButton)
+        }
+
+        refreshStatsBtn.action {
+            GlobalScope.launch {
+                viewModel.getInappropriates()
+                viewModel.getStats(viewModel.currentPeriod)
+            }
         }
 
         logoutBtn.action {

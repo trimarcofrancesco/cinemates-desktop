@@ -200,6 +200,11 @@
                <Insets left="30.0" right="30.0" />
             </padding>
             <HBox alignment="CENTER_RIGHT">
+               <Button fx:id="refreshStatsBtn" mnemonicParsing="false" text="Aggiorna">
+                  <HBox.margin>
+                     <Insets right="30.0" />
+                  </HBox.margin>
+               </Button>
                <ComboBox fx:id="timerangeCombobox" prefWidth="200.0">
                   <HBox.margin>
                      <Insets right="30.0" />
