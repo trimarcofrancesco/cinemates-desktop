@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="-Fixed logout on expired token">
+    <list default="true" id="d1beba19-492e-4df0-8bce-e71a862c743f" name="Default" comment="-Now clicked button in itemDetails close window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/ReportedCommentDetailsView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/ReportedCommentDetailsView.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/ReportedReviewDetailsView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/it/unina/cinemates_desktop/view/ReportedReviewDetailsView.kt" afterDir="false" />
@@ -368,6 +368,7 @@
       <workItem from="1623010870289" duration="4701000" />
       <workItem from="1623015637986" duration="13000" />
       <workItem from="1623099080139" duration="2783000" />
+      <workItem from="1623662033647" duration="1277000" />
     </task>
     <task id="LOCAL-00001" summary="- Added replacing view in MainView.kt">
       <created>1622579072280</created>

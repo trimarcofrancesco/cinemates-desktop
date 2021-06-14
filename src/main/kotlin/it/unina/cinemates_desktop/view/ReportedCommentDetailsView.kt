@@ -20,7 +20,7 @@ import tornadofx.action
 import tornadofx.addClass
 import tornadofx.alert
 
-class ReportedCommentDetailsView(comment: Comment, homeViewModel: HomeViewModel) : View() {
+class ReportedCommentDetailsView(comment: Comment, homeViewModel: HomeViewModel) : View("Cinemates - Commento") {
 
     private val sharedViewModel : SharedReportedItemDetailsViewModel by inject()
     private val loginViewModel: LoginViewModel by inject()
